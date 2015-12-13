@@ -1,0 +1,359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Irish Red Cross online pledges - Management tool</title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+ </head>
+
+ <body>
+  <nav class="navbar navbar-default" role="navigation">
+   <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+        <img src="images/logo_top.gif" height="35em" style="margin-top:-7px;">
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="#">
+            <span class="glyphicon glyphicon-home"></span>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="glyphicon glyphicon-heart"></span>
+            View pledges
+          </a>
+        </li>
+        <li class="active">
+          <a href="#">
+            <span class="glyphicon glyphicon-globe"></span>
+            Translate pledge forms
+          </a>
+        </li>
+      </ul>
+      <button class="btn btn-default navbar-btn navbar-right">Log out</button>
+    </div>
+   </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="well">
+      <h1>Select language</h1>
+      <form style="margin-top:20px;">
+        <div class="row">
+          <div class="form-group col-sm-3">
+            <label for="translateFrom">Translate from</label>
+            <select id="TranslateFrom" class="form-control input-lg">
+              <option>English (EN)</option>
+              <option>French (FR)</option>
+              <option>German (DE)</option>
+              <option>Spanish (ES)</option>
+            </select>
+          </div>
+          <div class="form-group col-sm-3">
+            <label for="translateTo">Translate to</label>
+            <select id="translateTo" class="form-control input-lg">
+              <option value="none">-- Select language -- </option>
+              <option value="french">French (FR)</option>
+              <option value="german">German (DE)</option>
+              <option value="spanish">Spanish (ES)</option>
+            </select>
+          </div>
+          <div class="form-group col-sm-3" style="margin-top:35px;">
+            <span class="help-block">
+              Can't find your language?
+              <a href="#">Add one</a>
+            </span>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div id="content" style="display:none;">
+      <div class="row">
+        <div class="col-sm-6">
+          <h1>Translating from English to <span id="locale"></span></h1>
+        </div>
+        <div class="col-sm-5 col-sm-offset-1">
+          <h1>French preview</h1>
+        </div>
+      </div>
+      <fieldset style="margin-top:20px;">
+        <legend>Page heading</legend>
+        <form class="form-horizontal col-sm-6">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">From EN</label>
+            <div class="col-sm-10">
+              <span class="lead">Pledge details</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">To FR</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Translate the above to French"  id="page-heading">
+            </div>
+          </div>
+        </form>
+        <form class="row" style="margin-top:20px;" id="page-heading-preview">
+          <div class="col-sm-5 col-sm-offset-1">
+            <h1 class="muted"><i>The French text will go here</i></h1>
+          </div>
+        </form>
+      </fieldset>
+      <fieldset style="margin-top:40px;">
+        <legend>Question 1</legend>
+        <form class="form-horizontal col-sm-6 pull-left">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">From EN</label>
+            <div class="col-sm-10">
+              <span class="lead">Contact name</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">To FR</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="q1-label" placeholder="Translate the above to French">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">From EN</label>
+            <div class="col-sm-10">
+              <span class="lead">Who should we contact about this page?</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">To FR</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="q1-help" placeholder="Translate the above to French">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">From EN</label>
+            <div class="col-sm-10">
+              <span class="lead">You must provide a contact name</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">To FR</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="q1-error" placeholder="Translate the above to French">
+            </div>
+          </div>
+        </form>
+        <form class="col-sm-5 col-sm-offset-1" id="q1-preview">
+          <div class="form-group no-error">
+            <label></label>
+            <input type="text" class="form-control">
+            <span class="help-block"></span>
+          </div>
+          <div class="form-group has-error">
+            <label></label>
+            <input type="text" class="form-control">
+            <span class="help-block"></span>
+          </div>
+        </form>
+      </fieldset>
+      <fieldset style="margin-top:40px;">
+        <legend>Question 2</legend>
+        <form class="form-horizontal col-sm-6 pull-left">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">From EN</label>
+            <div class="col-sm-10">
+              <span class="lead">Are you pledging on behalf of an organisation?</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">To FR</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Translate the above to French">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">From EN</label>
+            <div class="col-sm-10">
+              <span class="lead">Organisations include clubs, companies, schools, professional societies - any organised group that you are representing.</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">To FR</label>
+            <div class="col-sm-10">
+              <textarea type="text" class="form-control" placeholder="Translate the above to French"></textarea>
+            </div>
+          </div>
+        </form>
+        <form class="col-sm-5 col-sm-offset-1">
+          <!--div class="form-group">
+            <label>Êtes-vous des donateurs sur le compte d'une organisation?</label>
+            <input type="text" class="form-control">
+            <span class="help-block">Organisations comprennent les clubs, les entreprises, les écoles, les associations professionnelles - tout groupe organisé que vous représentez.</span>
+          </div-->
+        </form>
+      </fieldset>
+      <fieldset style="margin-top:40px;">
+        <legend>Question 3</legend>
+        <form class="form-horizontal col-sm-6 pull-left">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">From EN</label>
+            <div class="col-sm-10">
+              <span class="lead">Phone number</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">To FR</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Translate the above to French">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">From EN</label>
+            <div class="col-sm-10">
+              <span class="lead">e.g. +353123456</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">To FR</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Translate the above to French">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">From EN</label>
+            <div class="col-sm-10">
+              <span class="lead">International dialling code followed by your phone number. For example, +353123456.</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">To FR</label>
+            <div class="col-sm-10">
+              <textarea type="text" class="form-control" placeholder="Translate the above to French"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">From EN</label>
+            <div class="col-sm-10">
+              <span class="lead">You must provide a phone number</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">To FR</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Translate the above to French">
+            </div>
+          </div>
+        </form>
+        <form class="col-sm-5 col-sm-offset-1">
+          <!--div class="form-group">
+            <label>Numéro de téléphone</label>
+            <input type="text" class="form-control" placeholder="p.e. +33112345678">
+            <span class="help-block">Indicatif international suivi de votre numéro de téléphone. Par exemple, +33112345678.</span>
+          </div>
+          <div class="form-group has-error">
+            <label>Numéro de téléphone</label>
+            <input type="text" class="form-control">
+            <span class="help-block">Vous devez entrer un numéro de téléphone</span>
+          </div-->
+        </form>
+      </fieldset>
+      <div class="form-group" style="margin-top:20px;margin-left:115px;">
+        <button class="btn input-lg btn-primary">Publish pledge form</button>
+        <button class="btn input-lg btn-default">Preview pledge form</button>
+      </div>
+
+
+  </div> <!-- end content -->
+  </div> <!-- end container-fluid -->
+  <script>
+    $(document).ready(function() {
+
+      $("#translateTo").change( function() {
+        if ( $("#translateTo").val() == "none") {
+          $("#content").fadeOut();
+        }
+        if ( $("#translateTo").val() == "french") {
+          $("#locale").text("French");
+          $("#content").fadeIn();
+        }
+      });
+
+      var page_heading_fr = $("#page-heading").val();
+
+      if ( $("#page-heading").val().length == 0 ) {
+        $("#page-heading-preview").hide();
+      }
+
+      $("#page-heading").keyup(function(){
+        page_heading_fr = $("#page-heading").val();
+        if ( $("#page-heading").val().length == 0 ) {
+          $("#page-heading-preview").hide();
+        }
+        else {
+          $('#page-heading-preview h1').html(page_heading_fr);
+          $('#page-heading-preview').fadeIn();
+        }
+      });
+
+      var q1_label = $("#q1-label").val();
+      var q1_help = $("#q1-help").val();
+      var q1_error = $("#q1-error").val();
+
+      if ( $("#q1-label").val().length == 0 ) {
+        $("#q1-preview .no-error label, #q1-preview .no-error input").hide();
+      }
+
+      if ( $("#q1-help").val().length == 0 ) {
+        $("#q1-preview .no-error .help-block").hide();
+      }
+
+      if ( $("#q1-error").val().length == 0 ) {
+        $("#q1-preview .has-error").hide();
+      }
+
+      $("#q1-label").keyup(function(){
+        q1_label = $("#q1-label").val();
+        if ( $("#q1-label").val().length == 0 ) {
+          $("#q1-preview .no-error label, #q1-preview .no-error input").hide();
+        }
+        else {
+          $('#q1-preview label').html(q1_label);
+          $('#q1-preview .no-error label, #q1-preview .no-error input').fadeIn();
+        }
+      });
+
+      $("#q1-help").keyup(function(){
+        q1_help = $("#q1-help").val();
+        if ( $("#q1-help").val().length == 0 ) {
+          $("#q1-preview .no-error .help-block").hide();
+        }
+        else {
+          $('#q1-preview .no-error .help-block').html(q1_help).fadeIn();
+        }
+      });
+
+      $("#q1-error").keyup(function(){
+        q1_error = $("#q1-error").val();
+        if ( $("#q1-error").val().length == 0 ) {
+          $("#q1-preview .has-error").hide();
+        }
+        else {
+          $('#q1-preview .has-error .help-block').html(q1_error);
+          $('#q1-preview .has-error').fadeIn();
+        }
+      });
+
+    });
+  </script>
+ </body>
+</html>
